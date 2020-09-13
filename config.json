@@ -1,0 +1,26 @@
+
+
+{
+    "params":
+    {
+        "local_server":"True",
+        "local_host":"localhost",
+        "local_user":"",
+        "local_password":"",
+        "local_database":"",
+        "fb_url":"",
+        "tw_url":"",
+        "gh_url": "",
+        "tag_line": "Heaven for programmers",
+        "gmail-user":"",
+        "gmail-password":"",
+        "admin_user":"",
+        "admin_password": "",
+        "upload_location":""
+      
+    }
+  }
+  
+  
+    
+    
