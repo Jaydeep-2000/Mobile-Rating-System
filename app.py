@@ -12,33 +12,27 @@ import math
 app = Flask(__name__, template_folder='templates')
 
 
-
-
 @app.route("/")
 def home():
     return render_template('index.html')
 
-@app.route("/about")
-def about():
-    return render_template('about.html')
-
-@app.route("/contact")
-def contact():
-    return render_template('contact.html')
-
 @app.route("/dashboard")
 def dashboard():
-    return render_template('dashboard.html')
-
-@app.route("/gadget")
-def gadget():
-    return render_template('gadget.html')
+    return render_template("dashboard.html")
 
 
-@app.route("/login")
-def login():
-    return render_template('login.html')
+@app.route("/users")
+def users():
+    return render_template('users.html')
 
+@app.route("/devices")
+def devices():
+    return render_template('devices.html')
+
+@app.route("/add-device")
+def add_device():
+    return render_template('addDevice.html')
 if __name__ == "__main__":
     app.run(debug=True)
 
+import admin
