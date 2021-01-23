@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="products_wraper" style="height:auto;" style="margin-top: 20px">
+
+    <div class="compare-wrap" style="margin:30px 60px;">
+        <form action="/compare" method="POST">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="eg. Redmi Note 5 Pro" id="model1"
+                        name="model1" required>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="eg. Redmi Note 8 Pro" id="model2"
+                        name="model2" required>
+                </div>
+            </div>
+            <div class="text-center" style="padding-top: 30px;">
+                <button type="submit" class="btn" style="width:200px; background-color:#ff5a00; color:#fff">Compare</button>
+            </div>
+            </form>
+    </div>
+    {% if mobile1 | length > 0 and mobile2 | length >0 %}
+    <div style=" background-color: #111; height:50px;">
+        <h3 style="color:#fff; margin: 20px 30px; padding: 8px 8px; ">{{ mobile1['brand'] }}
+            {{mobile1['model_name'] }}<span
+                style="color: red; margin: 20px 10px; padding: 8px 0px; ">VS</span>{{ mobile2['brand'] }}
+            {{mobile2['model_name'] }}</h3>
+    </div>
+    <div style="clear: both;"></div>
+    <br>
+    <div class="inner_pro" style="padding-top:40px; padding-left:0px;">
+        <div class="inner_pro tab-content current" data-type="featured" id="featured_mobile" style="padding-left:0px;">
+            <table class="table table-bordered compare-table" style="width:90%; margin:30px auto; border-color:#1111;">
+                <tr>
+                    
+                    <th scope="row" style="vertical-align:center; padding-top: 86px; font-size: 24px;">Category</th>
+                    <td>
+                        {% set fname = 'assets/img/gadgets/' + mobile1['img_url'] %}
+                        <img src="{{ url_for('static',filename=fname) }}" class="d-block" alt="..."
+                            style="height:200px; width:105px; margin-left: 120px; margin-right:120px">
+                    </td>
+                    <td>
+                        {% set fname = 'assets/img/gadgets/' + mobile2['img_url'] %}
+                        <img src="{{ url_for('static',filename=fname) }}" class="d-block" alt="..."
+                        style="height:200px; width:105px; margin-left: 120px; margin-right:120px">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Processor</th>
+                    <td>{{ mobile1['processor'] }}</td>
+                    <td>{{ mobile2['processor'] }}</td>
+                </tr>
+                <tr>
+                    <th>Graphics</th>
+                    <td>{{ mobile1['graphics'] }}</td>
+                    <td>{{ mobile2['graphics'] }}</td>
+                </tr>
+                <tr>
+                    <th>OS</th>
+                    <td>{{ mobile1['os'] }}</td>
+                    <td>{{ mobile2['os'] }}</td>
+                </tr>
+                <tr>
+                    <th>Battery</th>
+                    <td>{{ mobile1['battery_cap'] }} mAh</td>
+                    <td>{{ mobile2['battery_cap'] }} mAh</td>
+                </tr>
+                <tr>
+                    <th>Quick Charge</th>
+                    <td>{{ mobile1['quick_charge'] }}</td>
+                    <td>{{ mobile2['quick_charge'] }}</td>
+                </tr>
+                <tr>
+                    <th>Front-Camera</th>
+                    <td>{{mobile1['front_camera'] }}</td>
+                    <td>{{mobile2['front_camera'] }}</td>
+                </tr>
+                <tr>
+                    <th>Back-Camera</th>
+                    <td>{{ mobile1['rear_camera'] }}</td>
+                    <td>{{ mobile2['rear_camera'] }}</td>
+                </tr>
+                <tr>
+                    <th>Display type</th>
+                    <td>{{mobile1['display_type'] }}</td>
+                    <td>{{mobile2['display_type'] }}</td>
+                </tr>
+                <tr>
+                    <th>Display Size</th>
+                    <td>{{ mobile1['display_size'] }}</td>
+                    <td>{{ mobile2['display_size'] }}</td>
+                </tr>
+                <tr>
+                    <th>Dimension</th>
+                    <td>{{ mobile1['dimensions'] }}</td>
+                    <td>{{ mobile2['dimensions'] }}</td>
+                </tr>
+                <tr>
+                    <th>Weight</th>
+                    <td>{{ mobile1['weight'] }} gm</td>
+                    <td>{{ mobile2['weight'] }} gm</td>
+                </tr>
+                <tr>
+                    <th>Build</th>
+                    <td>{{ mobile1['build'] }}</td>
+                    <td>{{ mobile2['build'] }}</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <h5 style="color:#666;">Information is not available...</h5>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,216 @@
+{% extends 'layout.html'%}
+{% block body %}
+<div class="products_wraper" style="height:auto;" style="margin-top: 20px">
+    <div style="width: 900px;margin-top:0px;">
+        <div style="float: left;margin-left: 34px;margin-bottom: 10px;">
+            <div class="main_heading_blog">Upcoming Mobiles</div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <!-- <div class="inner_pro"> -->
+    <div class="inner_pro tab-content current" data-type="featured" id="featured_mobile">
+        <ul id="fifth-carousel-featured_product" style="padding-left:14px;">
+            {% for row in upcoming_list %}
+            {% set fname = 'assets/img/gadgets/' + row['img_url'] %}
+            <li class="innerContent innerContent_mob show_li"
+                style="text-align: center;height: auto; margin-bottom: 15px">
+                <span class="target_link" data-href-url="vivo-v20-price-in-india" style="cursor: pointer;">
+                    <div class="hm_deal_img" style="margin-top:3px;"><img alt="Vivo V20" title="Vivo V20" class="mobile_img"
+                            src="{{ url_for('static', filename=fname) }}" alt="{{ row['brand'] }} {{
+                                    row['model_name'] }}"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">{{ row['brand'] }} {{row['model_name'] }}</div>
+                    <span class="pro_price">Rs. {{ row['price'] }}</span>
+                </div>
+                <a title="{{ row['brand'] }} {{row['model_name'] }}" href="/{{ row['brand'] }}-{{ row['model_name'] }}">
+                    <div class="gray_btn target_link" style="cursor: pointer;">
+                        View Details
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- </div> -->
+</div>
+
+<div class="products_wraper container-fluid" style="height:auto; margin-top: 20px">
+    <div style="width: 900px;margin-top:0px;">
+        <div style="float: left; margin-left: 34px; margin-bottom: 10px;">
+            <div class="main_heading_blog">Recommended Mobiles</div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="clr"></div>
+    <!-- <div class="inner_pro"> -->
+    <div class="inner_pro tab-content current" data-type="featured" id="featured_mobile">
+        <ul id="fifth-carousel-featured_product" style="padding-left: 0px;">
+            {% for row in recommendation_list %}
+            {% set fname = 'assets/img/gadgets/' + row['img_url'] %}
+            <li class="innerContent innerContent_mob show_li"
+                style="text-align: center;height: auto; margin-bottom: 15px">
+                <span class="target_link" data-href-url="vivo-v20-price-in-india" style="cursor: pointer;">
+                    <div class="hm_deal_img" style="margin-top:3px;"><img alt="Vivo V20" title="Vivo V20" class="mobile_img"
+                            src="{{ url_for('static', filename=fname) }}" alt="{{ row['brand'] }} {{
+                                        row['model_name'] }}"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">{{ row['brand'] }} {{row['model_name'] }}</div>
+                    <span class="pro_price">Rs. {{ row['price'] }}</span>
+                </div>
+                <a title="{{ row['brand'] }} {{row['model_name'] }}" href="/{{ row['brand'] }}-{{ row['model_name'] }}">
+                    <div class="gray_btn target_link" style="cursor: pointer;">
+                        View Details
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- </div> -->
+</div>
+
+<div class="products_wraper" style="height:auto; margin-top: 20px">
+    <div style="width: 900px;margin-top:0px;">
+        <div style="float: left;margin-left: 34px;margin-bottom: 10px;">
+            <div class="main_heading_blog"> Brands</div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="clr"></div>
+    <div class="inner_pro tab-content current brand_inner_pro" id="popular_brands_mobile">
+        <!-- <div style="left:320px;position: absolute;top: -80px;"></div> -->
+        <!-- <div class="jcarousel"> -->
+        <ul id="fifth-carousel-popular_brands" style="padding-left:14px;">
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Xiaomi" title="Xiaomi"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-mi.jpg') }}"
+                            class="brand_img" alt="Xiaomi"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">
+                        Xiaomi Mobiles </div>
+                </div>
+                <a href="/xiaomi-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Vivo" title="Vivo"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-vivo.jpg') }}"
+                            class="brand_img" alt="Vivo"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">Vivo
+                        Mobiles </div>
+                </div>
+                <a href="/vivo-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" data-href-url="xiaomi-mobile-price-list-in-india"
+                        style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Realme" title="Realme"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-realme.png') }}"
+                            class="brand_img" alt="Realme"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">Realme
+                        Mobiles </div>
+                </div>
+                <a href="/realme-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" data-href-url="xiaomi-mobile-price-list-in-india"
+                        style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Samsung" title="Samsung"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-samsung.png') }}"
+                            class="brand_img" alt="Samsung"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">Samsung
+                        Mobiles </div>
+                </div>
+                <a href="/samsung-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Apple" title="Apple"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-apple.jpg') }}"
+                            class="brand_img" alt="Apple"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">Apple
+                        Mobiles </div>
+                </div>
+                <a href="/apple-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Oppo" title="Oppo"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-oppo.jpg') }}"
+                            class="brand_img" alt="Xiaomi"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">Oppo
+                        Mobiles </div>
+                </div>
+                <a href="/oppo-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="OnePlus" title="OnePlus"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-oneplus.jpg') }}"
+                            class="brand_img" alt="Oppo"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">OnePlus
+                        Mobiles </div>
+                </div>
+                <a href="/oneplus-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+            <li class="innerContent innerContent_mob innerContent_brand show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_brand_img"><img alt="Assus" title="Assus"
+                            src="{{ url_for('static', filename='assets/img/brand/brand-img-assus.png') }}"
+                            style="width:120px; height:40px;" class="brand_img"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">
+                        Asus Mobiles
+                    </div>
+                </div>
+                <a href="/asus-mobile-price-list-in-india">
+                    <div class="gray_btn target_link" style="cursor: pointer;">View All</div>
+                </a>
+            </li>
+        </ul>
+
+        <!-- </div> -->
+    </div>
+</div>
+
+{% endblock %}

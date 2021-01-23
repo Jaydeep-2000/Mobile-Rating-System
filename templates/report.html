@@ -1,0 +1,127 @@
+{% extends 'layout1.html' %}
+{% block body %}
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-light">
+    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- sidebar -->
+                <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+                    <a href="#"
+                        class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">getyourphone</a>
+                    <div class="bottom-border pb-3">
+                        <img src="{{ url_for('static', filename='assets/img/admin/adminlogin.png') }}" width="50"
+                            class="rounded-circle mr-3">
+                        <a href="#" class="text-white">Admin</a>
+                    </div>
+                    <ul class="navbar-nav flex-column mt-4">
+                        <li class="nav-item"><a href="/admin-panel/dashboard" class="nav-link text-white p-3 mb-2 "><i
+                                    class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="/admin-panel/users"
+                                class="nav-link text-white p-3 mb-2 sidebar-link "><i
+                                    class="fas fa-user text-light fa-lg mr-3"></i>Users</a></li>
+                        <li class="nav-item"><a href="/admin-panel/gadgets"
+                                class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                                    class="fas fa-mobile text-light fa-lg mr-3"></i>Devices</a></li>
+                        <li class="nav-item"><a href="/admin-panel/add-gadget"
+                                class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                                    class="fas fa-plus text-light fa-lg mr-3"></i>Add a device</a></li>
+                        <!-- <li class="nav-item"><a href="/admin-panel/reported-comments"
+                                class="nav-link text-white p-3 mb-2 sidebar-link current" id="report"><i
+                                    class="fas fa-chart-line text-light fa-lg mr-3"></i>Reports</a></li> -->
+                    </ul>
+                </div>
+                <!-- end of sidebar -->
+
+                <!-- top-nav -->
+                <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <h4 class="text-light text-uppercase mb-0">Manage Users</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of top-nav -->
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- end of navbar -->
+
+<!-- modal -->
+<!-- <div class="modal fade" id="sign-out">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Want to leave?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Press logout to leave
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Logout</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- end of modal -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row pt-md-5 mt-md-3 mb-5 justify-content-center">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr class="text-muted">
+                                <th scope="col">#</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Remove</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in comments %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ row['comment'] }}</td>
+                                <td><a href="/admin-panel/users/delete/{{ row['model_name']}}/{{ row['email'] }}"><button
+                                            class="btn btn-success">Remove</button></a></td>
+                                <td><a href="/admin-panel/users/delete/{{ row['model_name']}}/{{ row['email'] }}"><button
+                                            class="btn btn-danger">Delete</button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- end of tables -->
+
+<!-- pagination -->
+<section>
+    <div class="container">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <a class="btn btn-primary float-left" href="{{prev}}">&larr; Previous </a>
+            <a class="btn btn-primary float-right" href="{{next}}">Next &rarr;</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- end of pagination -->
+
+
+
+{% endblock %}

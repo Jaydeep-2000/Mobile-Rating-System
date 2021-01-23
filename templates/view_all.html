@@ -1,0 +1,38 @@
+{% extends 'layout.html'%}
+{% block body %}
+<div class="products_wraper" style="height:auto;" style="margin-top: 20px">
+    <div style=" background-color: #111; height:50px;">
+        <h3 style="color:#fff; margin: 20px 30px; padding: 8px 8px; ">{{ mobile_list[0]['brand'] }} Mobile Price List In
+            India
+        </h3>
+    </div>
+    <div style="clear: both;"></div>
+    <br>
+    <div class="inner_pro">
+        <div class="inner_pro tab-content current" data-type="featured" id="featured_mobile">
+            <ul id="fifth-carousel-featured_product" style="padding-left:14px;"></ul>
+            {% for row in mobile_list %}
+            {% set fname = 'assets/img/gadgets/' + row['img_url'] %}
+            <li class="innerContent innerContent_mob show_li"
+                style="text-align: center;height: auto; margin-bottom:15px">
+                <span class="target_link" style="cursor: pointer;">
+                    <div class="hm_deal_img" style="margin-top:3px;"><img alt="Vivo V20" title="Vivo V20" class="mobile_img"
+                            src="{{ url_for('static', filename=fname) }}" alt="Vivo V20"></div>
+                </span>
+                <div style="padding: 10px;">
+                    <div class="title_name">
+                        {{ row['model_name'] }}
+                    </div>
+                    <span class="pro_price">Rs. {{ row['price']}} </span>
+                </div>
+                <a href="/{{ row['brand'] }}-{{ row['model_name'] }}">
+                    <div class="gray_btn target_link" data-href-url="vivo-v20-price-in-india" style="cursor: pointer;">
+                        View Details</div>
+                </a>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

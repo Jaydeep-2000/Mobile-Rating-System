@@ -1,0 +1,128 @@
+{% extends 'layout1.html' %}
+{% block body %}
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-light">
+    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- sidebar -->
+                <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+                    <a href="#"
+                        class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">getyourphone</a>
+                    <div class="bottom-border pb-3">
+                        <img src="{{ url_for('static', filename='assets/img/admin/adminlogin.png') }}" width="50"
+                            class="rounded-circle mr-3">
+                        <a href="#" class="text-white">Admin</a>
+                    </div>
+                    <ul class="navbar-nav flex-column mt-4">
+                        <li class="nav-item"><a href="/admin-panel/dashboard" class="nav-link text-white p-3 mb-2 "><i
+                                    class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="/admin-panel/users"
+                                class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                                    class="fas fa-user text-light fa-lg mr-3"></i>Users</a></li>
+                        <li class="nav-item"><a href="/admin-panel/gadgets"
+                                class="nav-link text-white p-3 mb-2 sidebar-link current"><i
+                                    class="fas fa-mobile text-light fa-lg mr-3"></i>Devices</a></li>
+                        <li class="nav-item"><a href="/admin-panel/add-gadget"
+                                class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                                    class="fas fa-plus text-light fa-lg mr-3"></i>Add a device</a></li>
+                        <!-- <li class="nav-item"><a href="/admin-panel/reported-comments"
+                                class="nav-link text-white p-3 mb-2 sidebar-link" id="analytics"><i
+                                    class="fas fa-chart-line text-light fa-lg mr-3"></i>Reports</a></li> -->
+
+                    </ul>
+                </div>
+                <!-- end of sidebar -->
+
+                <!-- top-nav -->
+                <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <h4 class="text-light text-uppercase mb-0">Devices</h4>
+                        </div>
+                        <div class="col-md-5">
+                            <form action="/admin-panel/gadgets/search" method="POST">
+                                <div class="input-group">
+                                    <input type="text" class="form-control search-input" placeholder="Search..."
+                                        id="search_key" name="search_key">
+                                    <button type="submit" class="btn btn-white search-button" data-toggle="modal"
+                                        data-target="#search-table"><i class="fas fa-search text-danger"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of top-nav -->
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- end of navbar -->
+
+
+
+
+<!-- gadget table -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row pt-md-5 mt-md-3 mb-5 justify-content-center">
+                    {% include 'includes/_messages.html' %}
+                    <table class="table table-striped gadgets" id="gadgets-table" data-toggle="gadgets">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">View</th>
+                                <th scope="col">Delete</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in gadgets %}
+                            <tr>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ row['model_name'] }}</td>
+                                <td>{{ row['brand'] }}</td>
+                                <td><a href="/admin-panel/gadgets/view/{{ row['brand'] }}/{{ row['model_name'] }}"><button
+                                            class="btn btn-success">View</button></td>
+                                <td><a href="/admin-panel/gadgets/delete/{{ row['brand'] }}/{{ row['model_name'] }}"><button
+                                            class="btn btn-danger">Delete</button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- pagination -->
+<section>
+    <div class="container">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <a class="btn btn-primary float-left" href="{{prev}}">&larr; Previous </a>
+            <a class="btn btn-primary float-right" href="{{next}}">Next &rarr;</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- end of pagination -->
+
+
+
+
+
+{% endblock %}

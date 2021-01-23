@@ -1,0 +1,145 @@
+	
+<!-- 
+ASSIGNMENT NO.3
+
+TITLE: HTML Form.
+
+PROBLEM STATEMENT: Create form in HTML with all form elements apply form validations 
+(e.g. Email, Mobile, Pin code, Password).
+
+
+NAME: JAYDEEP VISHWANATH JAGADALE
+
+CLASS:TE B
+
+BATCH: B
+
+ROLL NO:37024 -->
+
+*******************************************************************************************************
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration form</title>
+  <style>
+      * {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+/* Full-width input fields */
+input[type=text], input[type=email],input[type=password],input[type=tel], select{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+}
+
+  </style>
+  <script>
+    function validation()
+    {
+     var name=document.forms["RegForm"]["Name"];
+     var email=document.forms["RegForm"]["Email"];
+     var phone=document.forms["RegForm"]["Telephone"];
+     var what=document.forms["RegForm"]["Subject"];
+     var password=document.forms["RegForm"]["Password"];
+     var address=document.forms["RegForm"]["Address"];
+     
+     if(name.value =="")
+     {
+      window.alert("Please enter your name");
+      name.focus();
+      return false;
+      }
+       if(address.value =="")
+     {
+      window.alert("Please enter your address");
+      address.focus();
+      return false;
+      }
+    
+      if(email.value =="")
+     {
+      window.alert("Please enter your email");
+      email.focus();
+      return false;
+      }
+      
+      if(email.value.indexOf("@",0)<0)
+      {
+       window.alert("Please enter valid email address");
+       email.focus();
+       return false;
+      }
+     if(email.value.indexOf(".",0)<0)
+      {
+       window.alert("Please enter valid email address");
+       email.focus();
+       return false;
+      }
+      if(phone.value =="")
+     {
+      window.alert("Please enter your phone");
+      phone.focus();
+      return false;
+      }
+      if(password.value =="")
+     {
+      window.alert("Please enter your password");
+      password.focus();
+      return false;
+      }
+      if(what.selectedIndex < 1)
+     {
+      alert("Please enter your course");
+      what.focus();
+      return false;
+      }
+     }
+    </script>
+</head>
+<body bgcolor="grey">
+    <form name="RegForm" onsubmit="return validation()">
+  <div class="container">
+    <h1 align='center'>Registration Form</h1>
+    <hr>
+
+    <label for="Name"><b>Name</b></label>
+    <input type="text"  id="Name" name="Name" placeholder="Enter your name">
+
+    
+    <label for="Address"><b>Address</b></label>
+    <input type="text"  id="Address" name="Address" placeholder="Enter your address">
+    
+    <label for="Email"><b>Email</b></label>
+    <input type="email"  id="Email" name="Email" placeholder="Enter your email">
+
+    <label for="Password"><b>Password</b></label>
+    <input type="password" id="Password" placeholder="Enter Password" name="Password" required>
+    
+    <label for="Telephone"><b>Telephone</b></label>
+    <input type="tel" name="Telephone" placeholder="">
+
+   
+
+    <label for="Course"><b>Select your Course</b></label>
+    <select type="text" value="" name="Subject">
+        <option>COMPUTER</option>
+        <option>IT</option>
+        <option>CIVIL</option>
+        <option>ENTC<option>
+        <option>MECHANICAL</option>
+        <br>
+        <br>
+    
+
+  </div>
+
+  <div class="container">
+    <input type="submit" value="Send" name="Submit">
+    <input type="reset" value="Reset" name="Reset">
+  </div>
+</form>
+</body>
+</html>

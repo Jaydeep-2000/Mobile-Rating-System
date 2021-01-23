@@ -1,0 +1,169 @@
+{% extends 'layout1.html' %}
+{% block body %}
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-light">
+    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- sidebar -->
+                <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+                    <a href="#"
+                        class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">getyourphone</a>
+                    <div class="bottom-border pb-3">
+                        <img src="{{ url_for('static', filename='assets/img/admin/adminlogin.png') }}" width="50"
+                            class="rounded-circle mr-3">
+                        <a href="#" class="text-white">Admin</a>
+                    </div>
+                    <ul class="navbar-nav flex-column mt-4">
+                        <li class="nav-item"><a href="/admin-panel/dashboard" class="nav-link text-white p-3 mb-2 "><i
+                                    class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="/admin-panel/users"
+                                class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                                    class="fas fa-user text-light fa-lg mr-3"></i>Users</a></li>
+                        <li class="nav-item"><a href="/admin-panel/gadgets"
+                                class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                                    class="fas fa-mobile text-light fa-lg mr-3"></i>Devices</a></li>
+                        <li class="nav-item"><a href="/admin-panel/add-gadget"
+                                class="nav-link text-white p-3 mb-2 sidebar-link current"><i
+                                    class="fas fa-plus text-light fa-lg mr-3"></i>Add a device</a></li>
+                        <!-- <li class="nav-item"><a href="/admin-panel/reported-comments"
+                                class="nav-link text-white p-3 mb-2 sidebar-link" id="analytics"><i
+                                    class="fas fa-chart-line text-light fa-lg mr-3"></i>Reports</a></li> -->
+
+                    </ul>
+                </div>
+                <!-- end of sidebar -->
+
+                <!-- top-nav -->
+                <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <h4 class="text-light text-uppercase mb-0">Add Device</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of top-nav -->
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- end of navbar -->
+
+
+<!-- specs form -->
+<section>
+    <div class="container-fluid">
+        <div class="row pt-md-5 mt-md-3 mb-5 justify-content-center">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {% include 'includes/_messages.html' %}
+                <form class="" action="/admin-panel/add-specs/<brand>/<model_name>" method='POST'>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="model_name"><strong>Model Name</strong></label>
+                            <input type="text" readonly class="form-control-plaintext" id="model_name" name="model_name"
+                                value="{{model_name}}">
+                        </div>
+                        <div class="form-group col">
+                            <label for="brand"><strong>Brand</strong></label>
+                            <input type="text" readonly class="form-control-plaintext" id="brand" name="brand"
+                                value="{{brand}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="processor"><strong>Processor</strong></label>
+                            <input type="text" class="form-control" id="processor" name="processor"
+                                placeholder="e.g. SnapDragon 665" required>
+                        </div>
+                        <div class="form-group col">
+                            <label for="graphics"><strong>Graphics</strong></label>
+                            <input type="text" class="form-control" id="graphics" name="graphics" placeholder=""
+                                required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="os"><strong>OS</strong></label>
+                            <input type="text" class="form-control" id="os" name="os" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="battery_cap"><strong>Battery Capacity</strong></label>
+                        <input type="text" class="form-control" id="battery_cap" name="battery_cap" placeholder=""
+                            required>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="quick_charge"><strong>Quick Charge</strong></label>
+                            <select class="form-control" id="quick_charge" name="quick_charge" required>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="front_camera"><strong>Front-Camera</strong></label>
+                            <textarea class="form-control" id="front_camera" name="front_camera" rows="3"
+                                required></textarea>
+                        </div>
+                        <div class="form-group col">
+                            <label for="rear_camera"><strong>Back-Camera</strong></label>
+                            <textarea class="form-control" id="rear_camera" name="rear_camera" rows="3"
+                                required></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="display_type"><strong>Display type</strong></label>
+                            <input type="text" class="form-control" id="display_type" name="display_type" required>
+                        </div>
+                        <div class="form-group col">
+                            <label for="display_size"><strong>Display Size</strong></label>
+                            <input type="text" class="form-control" id="display_size" name="display_size" placeholder=""
+                                required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="aspect_ratio"><strong>Aspect ratio</strong></label>
+                            <input type="text" class="form-control" id="aspect_ratio" name="aspect_ratio" placeholder=""
+                                required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="dimensions"><strong>Dimensions</strong></label>
+                            <input type="text" class="form-control" id="dimensions" name="dimensions" placeholder=""
+                                required>
+                        </div>
+                        <div class="form-group col">
+                            <label for="weight"><strong>Weight</strong></label>
+                            <input type="text" class="form-control" id="weight" name="weight" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="build"><strong>Build</strong></label>
+                        <input type="text" class="form-control" id="build" name="build" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="colours"><strong>Colours</strong></label>
+                        <input type="text" class="form-control" id="colours" name="colours" placeholder="" required>
+                    </div>
+                    <div class="form-group col">
+                        <button type="submit" class="btn btn-primary">Save Specs</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end of specs form -->
+
+
+
+{% endblock %}

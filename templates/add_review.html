@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="heading_wrap row">
+    <div class="col">
+        <h1 style="margin:20px 50px; font-size: 30px;">Post a review</h1>
+    </div>
+</div>
+
+<div class="user-content row">
+    <div style="padding-left:50px; width:80%;">
+        <br>
+        <div class="basic-info">
+
+            <form action="/post-review/{{ brand }}-{{ model_name }}" method="POST">
+                <div class="form-group">
+                    <label for="name" style="font-size:15px; color:#666">Product:</label>
+                    <input type="text" readonly class="form-control-plaintext" id="name" name="name"
+                        style="width: 500px;" value="{{ brand }} {{ model_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="rating" style="font-size:15px; color:#666">Rating:</label>
+                    <select class="form-control" id="rating" name="rating" required>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="title" style="font-size:15px; color:#666; padding-top:30px;">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" style="width: 500px;" value="">
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                        style="height: 340px" id="comment" name="comment" required></textarea>
+                    <label for="comment">Comment</label>
+                </div>
+
+                {% if session.logged_in %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark" style="width:150px;">Post Review</button>
+                </div>
+                {% else %}
+                <div class="form-element text-center">
+                    <p class="text-danger" style="font-size:15px;">Login Required!!!</p>
+                </div>
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

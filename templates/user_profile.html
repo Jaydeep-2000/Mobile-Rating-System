@@ -1,0 +1,65 @@
+{% extends 'layout.html'%}
+{% block body %}
+<div class="heading_wrap row">
+    <div class="col">
+        <h1 style="margin:20px 50px; font-size: 30px;">Manage Profile</h1>
+    </div>
+    <div class="col"><a type="button" style="margin:20px 20px; font-size: 15px;"
+            href="/logout" class="btn btn-danger">Logout</a></div>
+</div>
+
+<hr>
+
+<div class="user-content row">
+    <div style="padding:20px; width:20%;">
+        <img src="{{ url_for('static', filename='assets/img/other/user.png') }}" style="width:200px; padding-left: 10px; border-radius: 50%;" alt="">
+    </div>
+    <div style="padding-left:50px; width:80%;">
+        <br>
+        <div class="basic-info">
+            <h2 style="font-weight:400; color:#666 ">Basic Information</h2>
+            <br>
+            <form action="/update-profile" method="POST">
+                <div class="form-group">
+                    <label for="name" style="font-size:15px; color:#666">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" style="width: 500px;" value="{{ data['name'] }}">
+                </div>
+                <div class="form-group">
+                    <label for="email" style="font-size:15px; color:#666">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" style="width: 500px" value="{{ data['email'] }}">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark" style="width:150px;">Save
+                        Changes</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="basic-info">
+            <h2 style="font-weight:400; color:#666 ">Change Password</h2>
+            <br>
+            <form action="/change-password" method="POST">
+                <div class="form-group">
+                    <label for="new_password" style="font-size:15px; color:#666">New Password</label>
+                    <input type="password" class="form-control" id="new_password" name="new_password"
+                        style="width: 500px;">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password" style="font-size:15px; color:#666">Confirm
+                        Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                        style="width: 500px">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark">Change Password</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

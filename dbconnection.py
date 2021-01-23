@@ -15,6 +15,6 @@ def connection():
                            db = params["local_database"],
                            cursorclass=MySQLdb.cursors.DictCursor,
                            port = 3308)
-    c = conn.cursor()
+    cur = conn.cursor()
 
-    return c, conn
+    return cur, conn

@@ -1,0 +1,160 @@
+**create table users-
+CREATE TABLE users(email VARCHAR(60) NOT NULL,name VARCHAR(60) NOT NULL,password VARCHAR(200) NOT NULL,PRIMARY KEY(email));
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| email    | varchar(100) | NO   | PRI | NULL    |       |
+| name     | varchar(100) | NO   |     | NULL    |       |
+| password | varchar(200) | NO   |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+**create table mobile-
+CREATE TABLE mobile(model_name VARCHAR(100) NOT NULL, brand VARCHAR(100) NOT NULL, price INT NOT NULL, PRIMARY KEY(model_name));
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| model_name | varchar(100) | NO   | PRI | NULL    |       |
+| brand      | varchar(100) | NO   |     | NULL    |       |
+| price      | int          | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+**create table variants-
+CREATE TABLE variants(model_no VARCHAR(100) NOT NULL, model_name VARCHAR(100) NOT NULL, variant VARCHAR(50) NOT NULL, price INT NOT NULL, FOREIGN KEY (model_name) REFERENCES mobile(model_name) ON UPDATE CASCADE ON DELETE CASCADE, PRIMARY KEY(model_no));
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| model_no   | varchar(100) | NO   | PRI | NULL    |       |
+| model_name | varchar(100) | NO   | MUL | NULL    |       |
+| variant    | varchar(50)  | NO   |     | NULL    |       |
+| price      | int          | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+**create table colours-
+CREATE TABLE colours(model_name VARCHAR(100), colour VARCHAR(50), FOREIGN KEY(model_name) REFERENCES mobile(model_name) ON UPDATE CASCADE ON DELETE CASCADE, PRIMARY KEY(model_name,colour));
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| model_name | varchar(100) | NO   | PRI | NULL    |       |
+| colour     | varchar(50)  | NO   | PRI | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+**create table images-
+CREATE TABLE images(model_name VARCHAR(100), img_url VARCHAR(100), FOREIGN KEY(model_name) REFERENCES mobile(model_name) ON UPDATE CASCADE ON DELETE CASCAdE, PRIMARY KEY(model_name,img_url));
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| model_name | varchar(100) | NO   | PRI | NULL    |       |
+| img_url    | varchar(100) | NO   | PRI | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+
+**create table reviews-
+CREATE TABLE reviews(model_name VARCHAR(100),email VARCHAR(100),rating INT NOT NULL,title VARCHAR(100),comment TEXT NOT NULL, date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, report BOOLEAN DEFAULT 1, FOREIGN KEY(model_name) REFERENCES mobile(model_name) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY(email) REFERENCES users(email) ON UPDATE CASCADE ON DELETE CASCADE,PRIMARY KEY(model_name,email));
++------------+--------------+------+-----+-------------------+-------------------+
+| Field      | Type         | Null | Key | Default           | Extra             |
++------------+--------------+------+-----+-------------------+-------------------+
+| model_name | varchar(100) | NO   | PRI | NULL              |                   |
+| email      | varchar(100) | NO   | PRI | NULL              |                   |
+| rating     | int          | NO   |     | NULL              |                   |
+| title      | varchar(100) | YES  |     | NULL              |                   |
+| comment    | text         | NO   |     | NULL              |                   |
+| date       | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| report     | tinyint(1)   | YES  |     | 1                 |                   |
++------------+--------------+------+-----+-------------------+-------------------+
+
+**create table specifications-
+  CREATE TABLE specifications(model_name VARCHAR(100),processor VARCHAR(100),graphics VARCHAR(100),os VARCHAR(50),battery_cap INT,quick_charge VARCHAR(20),front_camera VARCHAR(400),rear_camera VARCHAR(400),display_type VARCHAR(100),display_size INT,aspect_ratio VARCHAR(10),weight INT,build VARCHAR(150),dimensions VARCHAR(20), FOREIGN KEY (model_name) REFERENCES mobile(model_name) ON UPDATE CASCADE ON DELETE CASCADE, PRIMARY KEY(model_name));
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| model_name   | varchar(100) | NO   | PRI | NULL    |       |
+| processor    | varchar(100) | YES  |     | NULL    |       |
+| graphics     | varchar(100) | YES  |     | NULL    |       |
+| os           | varchar(50)  | YES  |     | NULL    |       |
+| battery_cap  | int          | YES  |     | NULL    |       |
+| quick_charge | varchar(20)  | YES  |     | NULL    |       |
+| front_camera | varchar(400) | YES  |     | NULL    |       |
+| rear_camera  | varchar(400) | YES  |     | NULL    |       |
+| display_type | varchar(100) | YES  |     | NULL    |       |
+| display_size | int          | YES  |     | NULL    |       |
+| aspect_ratio | varchar(10)  | YES  |     | NULL    |       |
+| weight       | int          | YES  |     | NULL    |       |
+| build        | varchar(150) | YES  |     | NULL    |       |
+| dimensions   | varchar(20)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
+**Fetching mobile specifications-
+SELECT mobile.model_name,brand,processor,graphics,os,battery_cap,quick_charge,front_camera,
+rear_camera,display_type,display_size,aspect_ratio,weight,build,dimensions FROM mobile 
+JOIN specifications ON mobile.model_name=specifications.model_name WHERE mobile.model_name='%s'
+
+
+CREATE TABLE colours(model_name VARCHAR(100), colour VARCHAR(50), FOREIGN KEY(model_name) REFERENCES mobile(model_name), PRIMARY KEY(model_name,colour));
+SELECT gadget.model_name,gadget.brand,variants.model_no,variants.variant,variants.price,colors.color FROM gadget JOIN variants ON gadget.model_name=variants.model_name JOIN colors ON variants.model_name=colors.model_name;
+
+
+**Insert specs-
+INSERT INTO specifications VALUES ("redmi note 5 pro","Snapdragon 636","Adreno 590","Android 10",4000,"Yes","20 MP f/2.2 Primary Camera","12 MP f/2.2 Primary Camera | 5 MP f/2.0, Depth Camera","IPS LCD","5.99 inches (15.21 cm)","18:9",181.00,"Glass front (Gorilla Glass), aluminum back, aluminum frame","158.6 x 75.4 x 8.1");
+
+**Insert variants-
+INSERT INTO variants VALUES ("MZB6088IN","redmi note 5 pro","64GB 6GB RAM",12970);
+
+
+**Counting users and gadgets-
+SELECT  (
+    SELECT COUNT(*)
+    FROM   table1
+    ) AS tot1,
+    (
+    SELECT COUNT(*)
+    FROM   table2
+    ) AS tottab2,
+    (
+    SELECT COUNT(*)
+    FROM   table3
+    ) AS tottab3
+
+
+    ** view all-
+    SELECT mobile.model_name, brand, price, img_url FROM  mobile JOIN images ON mobile.model_name = images.model_name WHERE brand = "xiaomi" AND images.img_url LIKE "%1%";
+
+    ** mobile fetch query in compare table-
+    SELECT * FROM mobile JOIN specifications ON mobile.model_name= specifications.model_name JOIN  images  ON specifications.model_name= images.model_name AND img_url LIKE "%1%"  WHERE mobile.model_name = "Redmi Note 5 Pro";
+
+
+   $$$ report comment
+    @app.route('/report-comment/<email>/<brand>-<model_name>', methods=['GET','POST'])
+    def report_comment(email,brand,model_name):
+
+    print(email)
+    print(model_name)
+    status = 1
+    print(status)
+    # create cursor
+    cur,conn = connection()
+
+    cur.execute("""UPDATE reviews SET report = %s  WHERE email = %s AND model_name = %s""", (status,email,model_name))
+
+    # close cursor
+    cur.close()
+
+    flash('Reported Successfully....','success')
+    return redirect(url_for('view_details', brand=brand, model_name=model_name))
+    
+
+    $$$ reported comments
+@app.route('/admin-panel/reported-comments', methods=['GET','POST'])
+@required_login
+def reported_comments():
+    status ="True"
+     # create cursor
+    cur,conn = connection()
+
+    result = cur.execute("""SELECT * FROM reviews WHERE report = %s""", (status,))
+
+    # fetch data
+    comments = cur.fetchall()
+
+    # close cursor
+    cur.close()
+
+    return render_template('report.html', comments=comments)

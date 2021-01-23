@@ -1,156 +1,251 @@
-
 {% extends 'layout1.html' %}
 {% block body %}
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-md navbar-light">
-    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- sidebar -->
-          <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-            <a href="#"
-              class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">getyourphone</a>
-            <div class="bottom-border pb-3">
-              <img src="{{ url_for('static', filename='assets/img/admin/admin.jpeg') }}" width="50" class="rounded-circle mr-3">
-              <a href="#" class="text-white">teamCypher</a>
-            </div>
-            <ul class="navbar-nav flex-column mt-4">
-              <li class="nav-item"><a href="/dashboard" class="nav-link text-white p-3 mb-2 current" id="dashboard"><i
-                    class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
-              <li class="nav-item"><a href="/users" class="nav-link text-white p-3 mb-2 sidebar-link" id="users"><i
-                    class="fas fa-user text-light fa-lg mr-3"></i>Users</a></li>
-              <li class="nav-item"><a href="/devices" class="nav-link text-white p-3 mb-2 sidebar-link" id="devices"><i
-                    class="fas fa-mobile text-light fa-lg mr-3"></i>Devices</a></li>
-                    <li class="nav-item"><a href="/add-device" class="nav-link text-white p-3 mb-2 sidebar-link"><i
-                      class="fas fa-plus text-light fa-lg mr-3"></i>Add a device</a></li>
-              <li class="nav-item"><a href="#" class="nav-link text-white p-3 mb-2 sidebar-link" id="analytics"><i
-                    class="fas fa-chart-line text-light fa-lg mr-3"></i>Analytics</a></li>
-
-            </ul>
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-light">
+  <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- sidebar -->
+        <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+          <a href="#"
+            class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">getyourphone</a>
+          <div class="bottom-border pb-3">
+            <img src="{{ url_for('static', filename='assets/img/admin/adminlogin.png') }}" width="50"
+              class="rounded-circle mr-3">
+            <a href="#" class="text-white">Admin</a>
           </div>
-          <!-- end of sidebar -->
-
-          <!-- top-nav -->
-          <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
-            <div class="row align-items-center">
-              <div class="col-md-4">
-                <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
-              </div>
-              <div class="col-md-4" style="float:right;">
-                <a href="#" class="nav-link text-light text-uppercase" data-toggle="modal"
-                  data-target="#sign-out">Logout<i class="fas fa-sign-out-alt text-danger fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- end of top-nav -->
+          <ul class="navbar-nav flex-column mt-4">
+            <li class="nav-item"><a href="/admin-panel/dashboard" class="nav-link text-white p-3 mb-2 current"
+                id="dashboard"><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
+            <li class="nav-item"><a href="/admin-panel/users" class="nav-link text-white p-3 mb-2 sidebar-link"
+                id="users"><i class="fas fa-user text-light fa-lg mr-3"></i>Users</a></li>
+            <li class="nav-item"><a href="/admin-panel/gadgets" class="nav-link text-white p-3 mb-2 sidebar-link"
+                id="devices"><i class="fas fa-mobile text-light fa-lg mr-3"></i>Devices</a></li>
+            <li class="nav-item"><a href="/admin-panel/add-gadget" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                  class="fas fa-plus text-light fa-lg mr-3"></i>Add a device</a></li>
+            <!-- <li class="nav-item"><a href="/admin-panel/reported-comments" class="nav-link text-white p-3 mb-2 sidebar-link" id="analytics"><i
+                    class="fas fa-chart-line text-light fa-lg mr-3"></i>Reports</a></li> -->
+          </ul>
         </div>
+        <!-- end of sidebar -->
+
+
+        <!-- top-nav -->
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+          <div class="row">
+            <div class="col-md-4 align-items-center" style="margin-right: 600px;">
+              <h4 class="text-light text-uppercase mb-0">Dashboard</h4>
+            </div>
+            <div class="navbar-nav navbar-right" style="float:right;">
+              <a href="/" class="nav-link text-light text-uppercase">Home</a>
+            </div>
+            <div class="navbar-nav navbar-right" style="float:right;">
+              <a href="#" class="nav-link text-light text-uppercase " data-toggle="modal"
+                data-target="#sign-out">Logout<i class="fas fa-sign-out-alt text-danger fa-lg"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- end of top-nav -->
       </div>
     </div>
-  </nav>
-  <!-- end of navbar -->
+  </div>
+</nav>
+<!-- end of navbar -->
 
 
 
-  <!-- modal -->
-  <div class="modal fade" id="sign-out">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Want to leave?</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          Press logout to leave
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Logout</button>
+<!-- modal -->
+<div class="modal fade" id="sign-out">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Want to leave?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Press logout to leave
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal">Stay Here</button>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of modal -->
+
+
+
+<!-- cards -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+        {% include 'includes/_messages.html' %}
+        <div class="row pt-md-5 mt-md-3 mb-5">
+          <div class="col-xl-3 pl-5 col-sm-6 p-2">
+            <div class="card card-common">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <i class="fas fa-mobile fa-3x text-success"></i>
+                  <div class="text-right text-secondary">
+                    <h5>Gadgets</h5>
+                    <h3>{{ count['@_count_gadgets_users_0'] }}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-secondary">
+                <i class="fas fa-sync mr-3"></i>
+                <span>Updated Now</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 pl-5 col-sm-6 p-2">
+            <div class="card card-common">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <i class="fas fa-users fa-3x text-info"></i>
+                  <div class="text-right text-secondary">
+                    <h5>Users</h5>
+                    <h3>{{ count['@_count_gadgets_users_1'] }}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-secondary">
+                <i class="fas fa-sync mr-3"></i>
+                <span>Updated Now</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 pl-5 col-sm-6 p-2">
+            <div class="card card-common">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <i class="fas fa-chart-line fa-3x text-danger"></i>
+                  <div class="text-right text-secondary">
+                    <h5>Visitors</h5>
+                    <h3>45,000</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-secondary">
+                <i class="fas fa-sync mr-3"></i>
+                <span>Updated Now</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- end of modal -->
+</section>
+<!-- end of cards -->
 
 
 
-  <!-- cards -->
-  <section>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <div class="row pt-md-5 mt-md-3 mb-5">
-            <div class="col-xl-3 pl-5 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <i class="fas fa-mobile fa-3x text-success"></i>
-                    <div class="text-right text-secondary">
-                      <h5>Gadgets</h5>
-                      <h3>$39,000</h3>
-                    </div>
+<!-- progress / task list -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+        <div class="row mb-4 align-items-center">
+          <!-- <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+            <div class="k text-white p-4 rounded"> -->
+              <!-- <h4 class="text-muted p-3 mb-3">Tasks:</h4>
+              <div class="container-fluid bg-white">
+                <div class="row py-3 mb-4 task-border align-items-center">
+                  <div class="col-1">
+                    <input type="checkbox" checked>
+                  </div>
+                  <div class="col-sm-9 col-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-edit fa-lg text-success mr-2"></i></a>
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-trash-alt fa-lg text-danger"></i></a>
                   </div>
                 </div>
-                <div class="card-footer text-secondary">
-                  <i class="fas fa-sync mr-3"></i>
-                  <span>Updated Now</span>
-                </div>
               </div>
-            </div>
-            <div class="col-xl-3 pl-5 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <i class="fas fa-users fa-3x text-info"></i>
-                    <div class="text-right text-secondary">
-                      <h5>Users</h5>
-                      <h3>15,000</h3>
-                    </div>
+              <div class="container-fluid bg-white">
+                <div class="row py-3 mb-4 task-border align-items-center">
+                  <div class="col-1">
+                    <input type="checkbox" checked>
+                  </div>
+                  <div class="col-sm-9 col-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-edit fa-lg text-success mr-2"></i></a>
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-trash-alt fa-lg text-danger"></i></a>
                   </div>
                 </div>
-                <div class="card-footer text-secondary">
-                  <i class="fas fa-sync mr-3"></i>
-                  <span>Updated Now</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 pl-5 col-sm-6 p-2">
-              <div class="card card-common">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <i class="fas fa-chart-line fa-3x text-danger"></i>
-                    <div class="text-right text-secondary">
-                      <h5>Visitors</h5>
-                      <h3>45,000</h3>
-                    </div>
+              </div> -->
+              <!-- <div class="container-fluid bg-white">
+                <div class="row py-3 mb-4 task-border align-items-center">
+                  <div class="col-1">
+                    <input type="checkbox" checked>
+                  </div>
+                  <div class="col-sm-9 col-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-edit fa-lg text-success mr-2"></i></a>
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-trash-alt fa-lg text-danger"></i></a>
                   </div>
                 </div>
-                <div class="card-footer text-secondary">
-                  <i class="fas fa-sync mr-3"></i>
-                  <span>Updated Now</span>
+              </div>
+              <div class="container-fluid bg-white">
+                <div class="row py-3 mb-4 task-border align-items-center">
+                  <div class="col-1">
+                    <input type="checkbox" checked>
+                  </div>
+                  <div class="col-sm-9 col-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-edit fa-lg text-success mr-2"></i></a>
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-trash-alt fa-lg text-danger"></i></a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end of cards -->
-
-
-
-  <!-- progress / task list -->
-  <section>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <div class="row mb-4 align-items-center">
-            <div class="col-xl-6 col-12 mb-4 mb-xl-0">
-              <div class="bg-dark text-white p-4 rounded">
-                <h4 class="mb-5">Coversion Rates</h4>
+              <div class="container-fluid bg-white">
+                <div class="row py-3 mb-4 task-border align-items-center">
+                  <div class="col-1">
+                    <input type="checkbox" checked>
+                  </div>
+                  <div class="col-sm-9 col-8">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-edit fa-lg text-success mr-2"></i></a>
+                  </div>
+                  <div class="col-1">
+                    <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i
+                        class="fas fa-trash-alt fa-lg text-danger"></i></a>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <h4 class="mb-5">Coversion Rates</h4>
                 <h6 class="mb-3">Google Chrome</h6>
                 <div class="progress mb-4" style="height: 20px">
                   <div class="progress-bar progress-bar-striped font-weight-bold" style="width: 91%">
@@ -174,10 +269,35 @@
                   <div class="progress-bar progress-bar-striped font-weight-bold bg-info" style="width: 10%">
                     10%
                   </div>
+                </div>-->
+            <!-- </div>
+          </div> -->
+          <div class="col-xl-5 mt-5" id="calendar">
+            <div class="card rounded">
+              <div class="card-body">
+                <h5 class="text-muted text-center mb-4"></h5>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="card bg-light">
+                      <i class="far fa-calendar-alt fa-8x text-warning d-block m-auto py-3"></i>
+                      <div class="card-body">
+                        <p class="card-text text-center font-weight-bold text-uppercase" id="date"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="card bg-light">
+                      <i class="far fa-clock fa-8x text-danger d-block m-auto py-3"></i>
+                      <div class="card-body">
+                        <p class="card-text text-center font-weight-bold text-uppercase" id="time"></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-6 col-12">
+          </div>
+          <!-- <div class="col-xl-6 col-12">
               <h4 class="text-muted p-3 mb-3">Tasks:</h4>
               <div class="container-fluid bg-white">
                 <div class="row py-3 mb-4 task-border align-items-center">
@@ -268,178 +388,18 @@
                         class="fas fa-trash-alt fa-lg text-danger"></i></a>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </div> -->
         </div>
       </div>
     </div>
-  </section>
-  <!-- end of progress / task list -->
+  </div>
+  </div>
+</section>
+<!-- end of progress / task list -->
 
-  <!-- activities / quick post -->
-  <section>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <div class="row align-items-center mb-5">
-            <div class="col-xl-7">
-              <h4 class="text-muted mb-4">Recent Customer Activities</h4>
-              <div id="accordion">
-                <div class="card">
-                  <div class="card-header">
-                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                      data-target="#collapseOne">
-                      <img src="images/cust1.jpeg" width="50" class="mr-3 rounded">
-                      John posted a new comment
-                    </button>
-                  </div>
-                  <div class="collapse show" id="collapseOne" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat
-                      consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                      data-target="#collapseTwo">
-                      <img src="images/cust2.jpeg" width="50" class="mr-3 rounded">
-                      Mark posted a new comment
-                    </button>
-                  </div>
-                  <div class="collapse" id="collapseTwo" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat
-                      consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                      data-target="#collapseThree">
-                      <img src="images/cust3.jpeg" width="50" class="mr-3 rounded">
-                      Monica posted a new comment
-                    </button>
-                  </div>
-                  <div class="collapse" id="collapseThree" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat
-                      consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                      data-target="#collapseFour">
-                      <img src="images/cust4.jpeg" width="50" class="mr-3 rounded">
-                      Vivien posted a new comment
-                    </button>
-                  </div>
-                  <div class="collapse" id="collapseFour" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat
-                      consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                      data-target="#collapseFive">
-                      <img src="images/cust5.jpeg" width="50" class="mr-3 rounded">
-                      Nick posted a new comment
-                    </button>
-                  </div>
-                  <div class="collapse" id="collapseFive" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat
-                      consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header">
-                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                      data-target="#collapseSix">
-                      <img src="images/cust6.jpeg" width="50" class="mr-3 rounded">
-                      Ann posted a new comment
-                    </button>
-                  </div>
-                  <div class="collapse" id="collapseSix" data-parent="#accordion">
-                    <div class="card-body">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat
-                      consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-5 mt-5">
-              <div class="card rounded">
-                <div class="card-body">
-                  <h5 class="text-muted text-center mb-4">Quick Status Post</h5>
-                  <ul class="list-inline text-center py-3">
-                    <li class="list-inline-item mr-4">
-                      <a href="#">
-                        <i class="fas fa-pencil-alt text-success"></i>
-                        <span class="h6 text-muted">Status</span>
-                      </a>
-                    </li>
-                    <li class="list-inline-item mr-4">
-                      <a href="#">
-                        <i class="fas fa-camera text-info"></i>
-                        <span class="h6 text-muted">Photo</span>
-                      </a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#">
-                        <i class="fas fa-map-marker-alt text-primary"></i>
-                        <span class="h6 text-muted">Check-in</span>
-                      </a>
-                    </li>
-                  </ul>
-                  <form>
-                    <div class="form-group">
-                      <input type="text" class="form-control py-2 mb-3" placeholder="What's Your Status...">
-                      <button type="button"
-                        class="btn btn-block text-uppercase font-weight-bold text-light bg-info py-2 mb-5">Submit
-                        Post</button>
-                    </div>
-                  </form>
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="card bg-light">
-                        <i class="far fa-calendar-alt fa-8x text-warning d-block m-auto py-3"></i>
-                        <div class="card-body">
-                          <p class="card-text text-center font-weight-bold text-uppercase">Mon, may 26</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="card bg-light">
-                        <i class="far fa-clock fa-8x text-danger d-block m-auto py-3"></i>
-                        <div class="card-body">
-                          <p class="card-text text-center font-weight-bold text-uppercase">3:50 am</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end of activities / quick post -->
 
-  <!-- footer -->
-<footer>
+<!-- footer -->
+<!-- <footer>
   <div class="container-fluid">
     <div class="row">
       <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
@@ -447,27 +407,18 @@
           <div class="col-lg-6 text-center">
             <ul class="list-inline">
               <li class="list-inline-item mr-2">
-                <a href="#" class="text-dark">CodeAndCreate</a>
-              </li>
-              <li class="list-inline-item mr-2">
                 <a href="#" class="text-dark">About</a>
-              </li>
-              <li class="list-inline-item mr-2">
-                <a href="#" class="text-dark">Support</a>
-              </li>
-              <li class="list-inline-item mr-2">
-                <a href="#" class="text-dark">Blog</a>
               </li>
             </ul>
           </div>
           <div class="col-lg-6 text-center">
-            <p>&copy; 2018 Copyright. Made With <i class="fas fa-heart text-danger"></i> by <span
-                class="text-success">CodeAndCreate</span></p>
+            <p>&copy; 2020 Copyright. Made With <i class="fas fa-heart text-danger"></i> by <span
+                class="text-success">teamCypher</span></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</footer>
+</footer> -->
 <!-- end of footer -->
 {% endblock %}

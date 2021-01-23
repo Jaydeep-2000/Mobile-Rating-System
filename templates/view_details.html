@@ -1,0 +1,229 @@
+{% extends 'layout.html'%}
+{% block body %}
+
+<div class="products_wraper" style="height:auto;" style="margin-top: 20px">
+    <div style=" background-color: #111; height:50px;">
+        <h3 style="color:#fff; margin: 20px 30px; padding: 8px 8px; ">
+            {{ specs['brand'] }} {{ specs['model_name'] }}
+        </h3>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="inner_pro" style="padding-left:0px;">
+        <div class="inner_pro tab-content current" data-type="featured" id="featured_mobile" style="padding-left:0px;">
+            <!-- img carousel -->
+            <div id="carouselExampleIndicators" class="carousel slide p-3 mb-5 bg-white rounded" data-ride="carousel">
+                <!-- image carousel -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+
+                    {% for row in images %}
+                    {% if loop.index==1 %}
+                    <div class="carousel-item active">
+                        {% set fname = 'assets/img/gadgets/' + row['img_url'] %}
+                        <img class="d-block rounded mx-auto" src="{{ url_for('static', filename=fname) }}"
+                            data-interval="10000" height="450px" alt="First slide">
+                    </div>
+                    {% else %}
+                    <div class="carousel-item">
+                        {% set fname = 'assets/img/gadgets/' + row['img_url'] %}
+                        <img class="d-block rounded mx-auto" src="{{ url_for('static', filename=fname) }}"
+                            data-interval="2000" height="450px" alt="First slide">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <!-- specs table -->
+            <div class="specs" style="margin-top:60px;">
+                <hr>
+                <div class="category-heading">
+                    <h3 style="color:#666; font-size:30px; margin-left:40px;">Key-specs</h3>
+                </div>
+                <hr>
+                <table class="table table-borderless specs-table" style="width:90%; margin:30px auto;">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Processor</th>
+                            <td valign="center">{{ specs['processor'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Graphics</th>
+                            <td>{{ specs['graphics'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">OS</th>
+                            <td>{{ specs['os'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Battery Capacity</th>
+                            <td>{{ specs['battery_cap'] }} mAh</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Quick Charge</th>
+                            <td>{{ specs['quick_charge'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Front-Camera</th>
+                            <td>{{ specs['front_camera'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Back-Camera</th>
+                            <td>{{ specs['rear_camera'] }}</td>
+                        <tr>
+                            <th scope="row">Display Type</th>
+                            <td>{{ specs['display_type'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Display Size</th>
+                            <td>{{ specs['display_size'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Dimesions</th>
+                            <td>{{ specs['dimensions'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Weight</th>
+                            <td>{{ specs['weight'] }} gm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Build</th>
+                            <td>{{ specs['build'] }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Colours</th>
+                            <td>
+                                {% for row in colours %}
+                                {{ row['colour'] }}
+                                {% if loop.last %}
+                                {% else %},
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="specs" style="margin-top:60px;">
+                <hr>
+                <div class="category-heading">
+                    <h3 style="color:#666; font-size:30px; margin-left:40px;">Variants</h3>
+                </div>
+                <hr>
+                <table class="table table-bordered specs-table" style="width:90%; margin:30px auto;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Variant</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in variants %}
+                        <tr>
+                            <td>{{ row['variant'] }}</td>
+                            <td>Rs. {{ row['price'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- reviews -->
+            <div class="reviews" style="margin-top:60px;">
+                <hr>
+                <div class="">
+                    <h3 style="color:#666; font-size:30px; margin-left:40px;">Reviews</h3>
+                </div>
+                <hr>
+                <div style="margin:20px 40px;">
+                    {% if reviews | length > 0%}
+                    {% for row in reviews%}
+                    <div>
+                        <div>
+                            <h6 style="text-transform:capitalize; margin-top:15px;"><span class="fa fa-user mx-2"></span><strong>{{ row['name'] }}</strong></h6>
+                        </div>
+                        {% if row['rating']==1 %}
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <strong>{{ row['title'] }}</strong>
+                        </div>
+                        {% elif row['rating']==2 %}
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-sta"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <strong>{{ row['title'] }}</strong>
+                        </div>
+                        {% elif row['rating']==3 %}
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <strong>{{ row['title'] }}</strong>
+                        </div>
+                        {% elif row['rating']==4 %}
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <strong>{{ row['title'] }}</strong>
+                        </div>
+                        {% elif row['rating']== 5%}
+                        <div class="rating">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <strong>{{ row['title'] }}</strong>
+                        </div>
+                        {% endif %}
+                        <div class="comment">{{ row['comment'] }}</div>
+                        <br>
+                        <!-- <a href="/report-comment/{{ row['email'] }}/{{ specs['brand'] }}-{{ specs['model_name'] }}"><small>Report</small></a> -->
+                        <hr>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div>
+                        <h5 class='text-center'><strong>No reviews available...</strong></h5>
+                    </div>
+                    {% endif %}
+                    <div style="margin-top: 30px;">
+                        <a type="button" href="/post-review/{{ specs['brand'] }}-{{ specs['model_name'] }}" class="btn btn-secondary btn-lg btn-block">Post a Review</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

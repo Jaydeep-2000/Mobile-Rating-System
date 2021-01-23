@@ -5,18 +5,22 @@
     {
         "local_server":"True",
         "local_host":"localhost",
-        "local_user":"",
+        "local_user":"Jaydeep",
         "local_password":"",
-        "local_database":"",
+        "local_database":"mobile_database",
         "fb_url":"",
         "tw_url":"",
-        "gh_url": "",
-        "tag_line": "Heaven for programmers",
+        "gh_url":"",
+        "tag_line":"Heaven for programmers",
         "gmail-user":"",
         "gmail-password":"",
-        "admin_user":"",
-        "admin_password": "",
-        "upload_location":""
+        "admin_user":"Jaydeep",
+        "admin_password":"Jaydeep",
+        "allowed_extensions":"{'jpg','jpeg','png'}",
+        "no_of_gadgets":8,
+        "no_of_users": 8,
+        "upload_location":"E:\\COLLEGE PROJECTS\\DBMS\\GAS\\static\\assets\\img\\gadgets",
+        "login_image":"adminlogin.png"
       
     }
   }
